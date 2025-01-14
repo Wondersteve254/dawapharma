@@ -1,0 +1,235 @@
+    <script src="assets/js/lib/bootstrap/js/bootstrap.min.js"></script>
+     <option value="2">Not Available</option>
+     <?php include('./constant/layout/head.php');?>
+<?php include('./constant/layout/header.php');?>
+
+<?php include('./constant/layout/sidebar.php');?>
+<!--  Author Name: Mayuri K. 
+ for any PHP, Codeignitor, Laravel OR Python work contact me at mayuri.infospace@gmail.com  
+ Visit website : www.mayurik.com --> 
+
+ 
+ <link href="assets/css/custom.css" rel="stylesheet"> 
+ 
+
+ 
+
+        <div class="page-wrapper">
+            
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-primary">Import Manufacturer Management</h3> </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item active">>Import Manufacturer</li>
+                    </ol>
+                </div>
+            </div>
+            
+            
+            <div class="container-fluid">
+                
+                
+                
+                
+                <div class="row">
+                    <div class="col-lg-8" style="    margin-left: 10%;">
+                        <div class="card">
+                            <div class="card-title">
+                               
+                            </div>
+                        
+                            <div class="card-body">
+                                <div class="input-states">
+                                   <form class="form-horizontal" id="submitImportForm" action="php_action/createBrandImport.php" method="POST" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-3 control-label">Import Manufacturer FIle</label>
+                                                
+                                                <div class="col-sm-9">
+                                                 <input type="file" class="form-control" id="brandfile" placeholder="Import Manufacturer FIle" name="brandfile" class="file-loading" style="width:auto;"/>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                         
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-3 control-label"></label>
+                                                
+                                                <div class="col-sm-2">
+                                                 
+                                                 <a href="assets/import/brand.xlsx" download>Sample file</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30" id="importBrandBtn" value="showAlert" onclick="showAlert();">Import</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+   
+ 
+<?php include('./constant/layout/footer.php');?>
+<!--  Author Name: Mayuri K. 
+ for any PHP, Codeignitor, Laravel OR Python work contact me at mayuri.infospace@gmail.com  
+ Visit website : www.mayurik.com -->
+
+
+<script type="text/javascript">
+    function showAlert(){
+  if($("#myAlert").find("div#myAlert2").length==0){
+    $("#myAlert").append("<div class='alert alert-success alert-dismissable' id='myAlert2'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button> Success! message sent successfully.</div>");
+  }
+  $("#myAlert").css("display", "");
+}
+</script>
+                                 <li><a href="importbrand.php">Import Manufacturer</a></li>
+<?php include('./constant/layout/head.php');?>
+<?php include('./constant/layout/header.php');?>
+
+<?php include('./constant/layout/sidebar.php');?>
+<!--  Author Name: Mayuri K. 
+ for any PHP, Codeignitor, Laravel OR Python work contact me at mayuri.infospace@gmail.com  
+ Visit website : www.mayurik.com -->   
+ 
+        <div class="page-wrapper">
+            
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-primary">Datewise Sales Report Management</h3> </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item active">>Datewise Report</li>
+                    </ol>
+                </div>
+            </div>
+            
+            
+            <div class="container-fluid">
+                
+                
+                
+                
+                <div class="row">
+                    <div class="col-lg-8" style="    margin-left: 10%;">
+                        <div class="card">
+                            <div class="card-title">
+                               
+                            </div>
+                            <div id="add-brand-messages"></div>
+                            <div class="card-body">
+                                <div class="input-states">
+                                   <form class="form-horizontal" action="php_action/getsalereport.php" method="post" id="getOrderReportForm">
+
+                                  
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-3 control-label">Start Date</label>
+                                                <div class="col-sm-9">
+                                                   <input type="date" class="form-control" id="startDate" name="startDate" placeholder="Start Date" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-3 control-label">End Date</label>
+                                                <div class="col-sm-9">
+                                                   <input type="date" class="form-control" id="endDate" name="endDate" placeholder="End Date" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit"  id="generateReportBtn" class="btn btn-primary btn-flat m-b-30 m-t-30">Generate Report</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                
+    <script>
+        $(document).ready(function() {
+    // order date picker
+    $("#startDate").date();
+    // order date picker
+    $("#endDate").date();
+
+    $("#getOrderReportForm").unbind('submit').bind('submit', function() {
+        
+        var startDate = $("#startDate").val();
+        var endDate = $("#endDate").val();
+
+        if(startDate == "" || endDate == "") {
+            if(startDate == "") {
+                $("#startDate").closest('.form-group').addClass('has-error');
+                $("#startDate").after('<p class="text-danger">The Start Date is required</p>');
+            } else {
+                $(".form-group").removeClass('has-error');
+                $(".text-danger").remove();
+            }
+
+            if(endDate == "") {
+                $("#endDate").closest('.form-group').addClass('has-error');
+                $("#endDate").after('<p class="text-danger">The End Date is required</p>');
+            } else {
+                $(".form-group").removeClass('has-error');
+                $(".text-danger").remove();
+            }
+        } else {
+            $(".form-group").removeClass('has-error');
+            $(".text-danger").remove();
+
+            var form = $(this);
+
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                dataType: 'date',
+                success:function(response) {
+                    var mywindow = window.open('', 'Rupee Invoice System', 'height=400,width=600');
+            mywindow.document.write('<html><head><title>Order Report Slip</title>');        
+            mywindow.document.write('</head><body>');
+            mywindow.document.write(response);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10
+
+            mywindow.print();
+            mywindow.close();
+                } // /success
+            }); // /ajax
+
+        } // /else
+
+        return false;
+    });
+
+});
+    </script>
+
+ 
+<?php include('./constant/layout/footer.php');?>
+<!--  Author Name: Mayuri K. 
+ for any PHP, Codeignitor, Laravel OR Python work contact me at mayuri.infospace@gmail.com  
+ Visit website : www.mayurik.com -->
+
+
+<li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-flag"></i><span class="hide-menu">Reports</span></a>
+                           <!-- <ul aria-expanded="false" class="collapse">
+                           
+                                <!-- <li><a href="report.php">Order Report</a></li> -->
+                           
+                                <li><a href="productreport.php">Product Report</a></li>
+                                <li><a href="expreport.php">Expired Product Report</a></li>
+                            </ul> 
+                        </li>
